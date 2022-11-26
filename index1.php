@@ -1,15 +1,15 @@
 <?php
 //db server: sdb-52.hosting.stackcp.net
 //db name: secretdiary-353030349d66
-//db password: amar1625
+//db password: xGQrUzTl€{k|
 
 
 
 if(array_key_exists("submit",$_POST)){
 
-$link =  mysqli_connect("sdb-52.hosting.stackcp.net",
+$link = new mysqli_connect("sdb-52.hosting.stackcp.net",
 "secretdiary-353030349d66",
-"amar1625","secretdiary-353030349d66");
+"xGQrUzTl€{k|");
 if(mysqli_connect_error()){
     die("data Connection Error");
 }
@@ -31,17 +31,17 @@ if(mysqli_connect_error()){
         //No error check validity
         $emailAddress = mysqli_real_escape_string($link, $_POST['email']);
         //for duplicate
-        $query ="SELECTT id FROM users WHERE email ='" .$emailAddress . "' LIMIT 1";
+        $query ="SELECTT id FROM Users WHERE email ='" .$emailAddress . "' LIMIT 1";
 
         $result = mysqli_query($link, $query);
         if(mysqli_num_rows($result) > 0){
-           $error = "That email addres is taken.";
+           $error = "That email addres is taken."
         }
         else{
           $password = mysqli_real_escape_string($link, $_POST['password']);
-          $password = password_hash($password, PASSWORD_DEFAULT);
+          $password =password_hash($password, PASSWORD_DEFAULT);
 
-          $query= "INSERT INTO users (email, password) VALUES ('" . $emailAddress . "','" . $password . "')";
+          $query= "INSERT INTO Users (email, password) VALUES ('" , $emailaddress . "', '" . $password . "')";
 
           if(!mysqli_query($link, $query)){
              $error .= "<p>Could not sign you up - Please try again later.</p>";
@@ -49,11 +49,6 @@ if(mysqli_connect_error()){
           }
           else{
           echo "sign up successful!";
-
-          $id = mysqli_insert_id($link);
-
-          $_SESSION['id']=$id;
-
           }//end if for successful/failed sign up
 
 
@@ -70,7 +65,7 @@ if(mysqli_connect_error()){
 
 
 
-<div id ="error"><?php echo $error; ?></div>
+<div id="error"><?php echo $error; ?></div>
 
 
 <form method="post">
